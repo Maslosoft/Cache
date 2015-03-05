@@ -1,0 +1,23 @@
+{
+    "name": "maslosoft/cache",
+    "description": "Easy to use, auto configurable, extensible cache provider",
+    "require-dev": {
+        "maslosoft/hedron": "~1.1"
+    },
+    "license": "New BSD",
+    "authors": [
+        {
+            "name": "Peter Maselkowski",
+            "email": "pmaselkowski@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "maslosoft/embedi": "0.0.9.*"
+    },
+	"autoload": {
+		"psr-4": {
+			"Maslosoft\\Cache\\": "src"
+		}
+	}
+}

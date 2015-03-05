@@ -1,0 +1,56 @@
+<?php
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+namespace Maslosoft\Cache\Adapters;
+
+use Maslosoft\Cache\Interfaces\ICacheAdapter;
+
+/**
+ * Cascade
+ *
+ * @author Piotr Maselkowski <pmaselkowski at gmail.com>
+ */
+class Cascade implements ICacheAdapter
+{
+
+	public $adapters = [
+		Apc::class => true,
+		StaticVar::class => true,
+	];
+
+	public function get($key)
+	{
+		
+	}
+
+	public function has($key)
+	{
+
+	}
+
+	public function isAvailable()
+	{
+		
+	}
+
+	public function set($key, $data, $timeout = null)
+	{
+
+	}
+
+	public function clear()
+	{
+
+	}
+
+	public function remove($key)
+	{
+
+	}
+
+}
