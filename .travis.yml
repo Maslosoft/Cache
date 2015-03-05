@@ -11,8 +11,10 @@ install:
   - composer install --dev
   - composer update maslosoft/cachetest
 before_script:
-# Extensions
-  - printf "extension=apc.so\n" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+# Extensions install
+  - sudo echo "no" | pecl install apcu-beta
+# Extensions enable
+  - printf "extension=apcu.so\n" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - printf "extension=memcached.so\n" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - printf "extension=redis.so\n" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
 # Extensions config
