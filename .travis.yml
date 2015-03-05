@@ -10,6 +10,14 @@ install:
   - composer self-update
   - composer install --dev
   - composer update maslosoft/cachetest
+before_script:
+# Extensions
+  - printf "extension=apc.so\n" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - printf "extension=memcached.so\n" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - printf "extension=redis.so\n" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+# Extensions config
+  - printf "apc.enable_cli = 1\n" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - printf "apc.enabled = 1\n" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
 after_script:
   - wget --no-check-certificate https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --repository=g/Maslosoft/Cache --revision=`git rev-parse HEAD` --format=php-clover ./tests/_output/coverage.clover

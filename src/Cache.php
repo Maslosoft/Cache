@@ -9,6 +9,7 @@
 namespace Maslosoft\Cache;
 
 use Maslosoft\Cache\Adapters\Apc;
+use Maslosoft\Cache\Adapters\StaticVar;
 use Maslosoft\Cache\Helpers\AdapterFactory;
 use Maslosoft\Cache\Interfaces\ICache;
 use Maslosoft\Cache\Interfaces\ICacheAdapter;
@@ -67,7 +68,7 @@ class Cache implements ICache
 
 	public function has($key)
 	{
-		$this->getAdapter()->has($key);
+		return $this->getAdapter()->has($key);
 	}
 
 	public function set($key, $data, $timeout = null)
@@ -76,17 +77,17 @@ class Cache implements ICache
 		{
 			$timeout = $this->timeout;
 		}
-		$this->getAdapter()->set($key, $data, $timeout);
+		return $this->getAdapter()->set($key, $data, $timeout);
 	}
 
 	public function clear()
 	{
-		$this->getAdapter()->clear();
+		return $this->getAdapter()->clear();
 	}
 
 	public function remove($key)
 	{
-		$this->getAdapter()->remove($key);
+		return $this->getAdapter()->remove($key);
 	}
 
 	/**

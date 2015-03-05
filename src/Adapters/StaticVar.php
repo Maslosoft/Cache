@@ -32,7 +32,16 @@ class StaticVar implements ICacheAdapter
 
 	public function has($key)
 	{
-		return array_key_exists($key, self::$_values);
+		if(!array_key_exists($key, self::$_ttls))
+		{
+			return false;
+		}
+		$ttl = self::$_ttls[$key];
+		if(0 === $ttl)
+		{
+			return true;
+		}
+		return $ttl >= time();
 	}
 
 	public function isAvailable()
@@ -42,17 +51,28 @@ class StaticVar implements ICacheAdapter
 
 	public function set($key, $data, $timeout = null)
 	{
-		
+		self::$_values[$key] = $data;
+		if ($timeout)
+		{
+			$ttl = time() + $timeout;
+		}
+		else
+		{
+			$ttl = 0;
+		}
+		self::$_ttls[$key] = $ttl;
 	}
 
 	public function clear()
 	{
-
+		self::$_values = [];
+		self::$_ttls = [];
 	}
 
 	public function remove($key)
 	{
-
+		unset(self::$_values[$key]);
+		unset(self::$_ttls[$key]);
 	}
 
 }

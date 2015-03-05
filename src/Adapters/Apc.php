@@ -35,17 +35,17 @@ class Apc implements ICacheAdapter
 
 	public function set($key, $data, $timeout = null)
 	{
-		apc_store($key, $data, $timeout);
+		return apc_store($key, $data, $timeout);
 	}
 
 	public function clear()
 	{
-		apc_clear_cache();
+		return apc_clear_cache();
 	}
 
 	public function remove($key)
 	{
-		apc_delete($key);
+		return apc_delete($key);
 	}
 
 }

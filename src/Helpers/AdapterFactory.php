@@ -28,7 +28,10 @@ class AdapterFactory
 	 */
 	public static function create($adapters, ICache $parent = null)
 	{
-		return self::_create($adapters, $parent);
+		foreach (self::_create($adapters, $parent) as $adapter)
+		{
+			return $adapter;
+		}
 	}
 
 	/**
