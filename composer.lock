@@ -423,12 +423,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Maslosoft/CacheTest.git",
-                "reference": "0caad0e8b652e67c602b1bbfa674fdd57dc76705"
+                "reference": "55eb956a22e61c5f0e86dcfe20d12e42b114742a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maslosoft/CacheTest/zipball/0caad0e8b652e67c602b1bbfa674fdd57dc76705",
-                "reference": "0caad0e8b652e67c602b1bbfa674fdd57dc76705",
+                "url": "https://api.github.com/repos/Maslosoft/CacheTest/zipball/55eb956a22e61c5f0e86dcfe20d12e42b114742a",
+                "reference": "55eb956a22e61c5f0e86dcfe20d12e42b114742a",
                 "shasum": ""
             },
             "require": {
@@ -436,6 +436,13 @@
                 "codeception/specify": "*"
             },
             "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Maslosoft\\CacheTest\\Testers\\": "testers",
+                    "Maslosoft\\CacheTest\\Models\\": "models",
+                    "Maslosoft\\CacheTest\\Extensions\\": "extensions"
+                }
+            },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "New BSD"
@@ -447,7 +454,7 @@
                 }
             ],
             "description": "Tests for Maslosoft/Cache",
-            "time": "2015-03-05 13:19:44"
+            "time": "2015-03-05 14:27:55"
         },
         {
             "name": "maslosoft/hedron",

@@ -56,7 +56,7 @@ class StaticVar implements ICacheAdapter
 	public function set($key, $data, $timeout = null)
 	{
 		self::$_values[$key] = $data;
-		if ($timeout)
+		if ($timeout !== null && $timeout > 0)
 		{
 			$ttl = time() + $timeout;
 		}
