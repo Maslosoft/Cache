@@ -2,7 +2,8 @@
     "name": "maslosoft/cache",
     "description": "Easy to use, auto configurable, extensible cache provider",
     "require-dev": {
-        "maslosoft/hedron": "~1.1"
+        "maslosoft/hedron": "~1.1",
+		"maslosoft/cachetest": "dev-master"
     },
     "license": "New BSD",
     "authors": [
