@@ -427,14 +427,14 @@ $cache = new Cache();
 // By default it will try some cache providers and select best available.
 $cache-&gt;init();
 
-$id = 1;
+$key = 1;
 
-if(!$cache-&gt;has($id))
+if(!$cache-&gt;has($key))
 {
-    $cache-&gt;set($id, &#39;Some value&#39;);
+    $cache-&gt;set($key, &#39;Some value&#39;);
 }
 
-echo $cache-&gt;get($id);</pre>
+echo $cache-&gt;get($key);</pre>
 <p>And that&#39;s it!</p>
 <a name="resources"></a><h2>Resources<a class="anchorlink" href="#resources"></a></h2>
 <ul class="list">

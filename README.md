@@ -39,14 +39,14 @@ Use composer to install extension:
 	// By default it will try some cache providers and select best available.
 	$cache->init();
 	
-	$id = 1;
+	$key = 1;
 	
-	if(!$cache->has($id))
+	if(!$cache->has($key))
 	{
-		$cache->set($id, 'Some value');
+		$cache->set($key, 'Some value');
 	}
 	
-	echo $cache->get($id);
+	echo $cache->get($key);
 
 
 And that's it!
