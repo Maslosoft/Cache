@@ -26,6 +26,15 @@ It implements only basic cache operations:
 Use composer to install extension:
 
 	composer require maslosoft/cache:"*"
+	
+Setup cache. After calling `init` any further instance will be configured same as below `$cache`.
+	
+	use Maslosoft\Cache\Cache;
+	
+    $cache = new Cache();
+	// Setup something here...
+	$cache->timeout = 1244;
+	$cache->init();
 
 ## Basic Usage
 

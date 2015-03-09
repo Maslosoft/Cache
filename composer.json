@@ -14,7 +14,7 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "maslosoft/embedi": "0.0.9.*"
+        "maslosoft/embedi": "*"
     },
 	"autoload": {
 		"psr-4": {
