@@ -5,7 +5,7 @@
         "maslosoft/hedron": "~1.1",
 		"maslosoft/cachetest": "dev-master"
     },
-    "license": "New BSD",
+    "license": "AGPL/Commercial",
     "authors": [
         {
             "name": "Peter Maselkowski",
