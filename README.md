@@ -15,7 +15,7 @@
 
 ### Quick Install
 ```bash
-	composer require maslosoft/cache:"*"
+composer require maslosoft/cache:"*"
 ```
 
 <!--/header-->
