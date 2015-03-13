@@ -1,8 +1,24 @@
-#Maslosoft Cache
+<!--header-->
+<!-- Auto generated do not modify between `header` and `/header` -->
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Maslosoft/Cache/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Maslosoft/Cache/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/Maslosoft/Cache/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Maslosoft/Cache/?branch=master)
-<img src="https://travis-ci.org/Maslosoft/Cache.svg?branch=master" style="height:18px"/>
+# <a href="http://maslosoft.com/cache/">Maslosoft Cache</a>
+<a href="http://maslosoft.com/cache/">_Easy to use, auto configurable, extensible cache provider_</a>
+
+<a href="https://packagist.org/packages/maslosoft/cache" title="Latest Stable Version">
+<img src="https://poser.pugx.org/maslosoft/cache/v/stable.svg" alt="Latest Stable Version" style="height: 20px;"/>
+</a>
+<a href="https://packagist.org/packages/maslosoft/cache" title="License">
+<img src="https://poser.pugx.org/maslosoft/cache/license.svg" alt="License" style="height: 20px;"/>
+</a>
+<img src="https://travis-ci.org/Maslosoft/Cache.svg?branch=master"/>
+<img src="https://travis-ci.org/Maslosoft/Cache.svg?branch=master"/>
+
+### Quick Install
+```bash
+	composer require maslosoft/cache:"*"
+```
+
+<!--/header-->
 
 ######Easy to use, auto configurable, extensible cache provider
 
