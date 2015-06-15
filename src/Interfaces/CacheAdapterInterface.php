@@ -16,7 +16,7 @@ namespace Maslosoft\Cache\Interfaces;
  *
  * @author Piotr Maselkowski <pmaselkowski at gmail.com>
  */
-interface ICacheAdapter extends ICache
+interface CacheAdapterInterface extends CacheInterface
 {
 
 	/**

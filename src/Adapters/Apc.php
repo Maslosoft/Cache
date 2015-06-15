@@ -12,14 +12,14 @@
 
 namespace Maslosoft\Cache\Adapters;
 
-use Maslosoft\Cache\Interfaces\ICacheAdapter;
+use Maslosoft\Cache\Interfaces\CacheAdapterInterface;
 
 /**
  * Apc cache adapter
  *
  * @author Piotr Maselkowski <pmaselkowski at gmail.com>
  */
-class Apc implements ICacheAdapter
+class Apc implements CacheAdapterInterface
 {
 
 	public function get($key)

@@ -16,7 +16,7 @@ namespace Maslosoft\Cache\Interfaces;
  *
  * @author Piotr Maselkowski <pmaselkowski at gmail.com>
  */
-interface ICache
+interface CacheInterface
 {
 
 	/**

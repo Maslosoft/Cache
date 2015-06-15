@@ -12,14 +12,14 @@
 
 namespace Maslosoft\Cache\Adapters;
 
-use Maslosoft\Cache\Interfaces\ICacheAdapter;
+use Maslosoft\Cache\Interfaces\CacheAdapterInterface;
 
 /**
  * Static
  *
  * @author Piotr Maselkowski <pmaselkowski at gmail.com>
  */
-class StaticVar implements ICacheAdapter
+class StaticVar implements CacheAdapterInterface
 {
 
 	private static $_values = [];

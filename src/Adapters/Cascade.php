@@ -12,14 +12,14 @@
 
 namespace Maslosoft\Cache\Adapters;
 
-use Maslosoft\Cache\Interfaces\ICacheAdapter;
+use Maslosoft\Cache\Interfaces\CacheAdapterInterface;
 
 /**
  * Cascade
  *
  * @author Piotr Maselkowski <pmaselkowski at gmail.com>
  */
-class Cascade implements ICacheAdapter
+class Cascade implements CacheAdapterInterface
 {
 
 	public $adapters = [

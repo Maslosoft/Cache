@@ -16,10 +16,10 @@ namespace Maslosoft\Cache\Interfaces;
  * Implement this interface to get access to cache parent if any available.
  * @author Piotr Maselkowski <pmaselkowski at gmail.com>
  */
-interface IChildCache
+interface ChildCacheInterface
 {
 
 	public function getParent();
 
-	public function setParent(ICache $cache);
+	public function setParent(CacheInterface $cache);
 }

@@ -12,9 +12,9 @@
 
 namespace Maslosoft\Cache\Helpers;
 
-use Maslosoft\Cache\Interfaces\ICache;
-use Maslosoft\Cache\Interfaces\ICacheAdapter;
-use Maslosoft\Cache\Interfaces\IChildCache;
+use Maslosoft\Cache\Interfaces\CacheInterface;
+use Maslosoft\Cache\Interfaces\CacheAdapterInterface;
+use Maslosoft\Cache\Interfaces\ChildCacheInterface;
 use Maslosoft\EmbeDi\EmbeDi;
 
 /**
@@ -28,9 +28,9 @@ class AdapterFactory
 	/**
 	 * Create first available adapter based on configuration
 	 * @param mixed[] $adapters
-	 * @return ICacheAdapter
+	 * @return CacheAdapterInterface
 	 */
-	public static function create($adapters, ICache $parent = null)
+	public static function create($adapters, CacheInterface $parent = null)
 	{
 		foreach (self::_create($adapters, $parent) as $adapter)
 		{
@@ -41,9 +41,9 @@ class AdapterFactory
 	/**
 	 * Create all available adapters based on configuration
 	 * @param mixed[] $adapters
-	 * @return ICacheAdapter[] Key is class name
+	 * @return CacheAdapterInterface[] Key is class name
 	 */
-	public static function createAll($adapters, ICache $parent = null)
+	public static function createAll($adapters, CacheInterface $parent = null)
 	{
 		$result = [];
 		foreach (self::_create($adapters, $parent) as $adapter)
@@ -54,7 +54,7 @@ class AdapterFactory
 		return $result;
 	}
 
-	private static function _create($adapters, ICache $parent = null)
+	private static function _create($adapters, CacheInterface $parent = null)
 	{
 		foreach ($adapters as $className => $config)
 		{
@@ -63,7 +63,7 @@ class AdapterFactory
 				continue;
 			}
 			$adapter = new $className;
-			/* @var $adapter ICacheAdapter */
+			/* @var $adapter CacheAdapterInterface */
 			if ($adapter->isAvailable())
 			{
 				if (is_array($config))
@@ -72,7 +72,7 @@ class AdapterFactory
 				}
 
 				// Parent cache config
-				if ($parent && $adapter instanceof IChildCache)
+				if ($parent && $adapter instanceof ChildCacheInterface)
 				{
 					$adapter->setParent($parent);
 				}

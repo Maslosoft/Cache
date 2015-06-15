@@ -15,8 +15,8 @@ namespace Maslosoft\Cache;
 use Maslosoft\Cache\Adapters\Apc;
 use Maslosoft\Cache\Adapters\StaticVar;
 use Maslosoft\Cache\Helpers\AdapterFactory;
-use Maslosoft\Cache\Interfaces\ICache;
-use Maslosoft\Cache\Interfaces\ICacheAdapter;
+use Maslosoft\Cache\Interfaces\CacheInterface;
+use Maslosoft\Cache\Interfaces\CacheAdapterInterface;
 use Maslosoft\EmbeDi\EmbeDi;
 
 /**
@@ -24,7 +24,7 @@ use Maslosoft\EmbeDi\EmbeDi;
  *
  * @author Piotr Maselkowski <pmaselkowski at gmail.com>
  */
-class Cache implements ICache
+class Cache implements CacheInterface
 {
 
 	/**
@@ -44,7 +44,7 @@ class Cache implements ICache
 
 	/**
 	 *
-	 * @var ICache
+	 * @var CacheInterface
 	 */
 	private $_adapter = null;
 
@@ -96,7 +96,7 @@ class Cache implements ICache
 
 	/**
 	 * Get cache adapter
-	 * @return ICacheAdapter
+	 * @return CacheAdapterInterface
 	 */
 	private function getAdapter()
 	{
