@@ -100,7 +100,7 @@ class Cache implements ICache
 	 */
 	private function getAdapter()
 	{
-		if (null == $this->_adapter)
+		if (null === $this->_adapter)
 		{
 			$this->_adapter = AdapterFactory::create($this->adapters, $this);
 		}
