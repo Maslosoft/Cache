@@ -32,7 +32,7 @@ class AdapterFactory
 	 */
 	public static function create($adapters, CacheInterface $parent = null)
 	{
-		foreach (self::_create($adapters, $parent) as $adapter)
+		foreach (self::createOne($adapters, $parent) as $adapter)
 		{
 			return $adapter;
 		}
@@ -46,7 +46,7 @@ class AdapterFactory
 	public static function createAll($adapters, CacheInterface $parent = null)
 	{
 		$result = [];
-		foreach (self::_create($adapters, $parent) as $adapter)
+		foreach (self::createOne($adapters, $parent) as $adapter)
 		{
 			$key = get_class($adapter);
 			$result[$key] = $adapter;
@@ -54,7 +54,7 @@ class AdapterFactory
 		return $result;
 	}
 
-	private static function _create($adapters, CacheInterface $parent = null)
+	private static function createOne($adapters, CacheInterface $parent = null)
 	{
 		foreach ($adapters as $className => $config)
 		{
