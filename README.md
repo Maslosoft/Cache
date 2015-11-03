@@ -11,7 +11,7 @@
 <img src="https://poser.pugx.org/maslosoft/cache/license.svg" alt="License" style="height: 20px;"/>
 </a>
 <img src="https://travis-ci.org/Maslosoft/Cache.svg?branch=master"/>
-<img src="https://travis-ci.org/Maslosoft/Cache.svg?branch=master"/>
+<img src="http://hhvm.h4cc.de/badge/maslosoft/cache.svg?style=flat"/>
 
 ### Quick Install
 ```bash
