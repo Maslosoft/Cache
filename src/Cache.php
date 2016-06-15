@@ -43,6 +43,12 @@ class Cache implements CacheInterface
 	public $timeout = 600;
 
 	/**
+	 * Namespace for cache keys. This is to allow multi-tenant applications.
+	 * @var string
+	 */
+	public $keyspace = '';
+
+	/**
 	 *
 	 * @var CacheInterface
 	 */
@@ -67,12 +73,12 @@ class Cache implements CacheInterface
 
 	public function get($key)
 	{
-		return $this->getAdapter()->get($key);
+		return $this->getAdapter()->get($this->keyspace . $key);
 	}
 
 	public function has($key)
 	{
-		return $this->getAdapter()->has($key);
+		return $this->getAdapter()->has($this->keyspace . $key);
 	}
 
 	public function set($key, $data, $timeout = null)
@@ -81,7 +87,7 @@ class Cache implements CacheInterface
 		{
 			$timeout = $this->timeout;
 		}
-		return $this->getAdapter()->set($key, $data, $timeout);
+		return $this->getAdapter()->set($this->keyspace . $key, $data, $timeout);
 	}
 
 	public function clear()
@@ -91,7 +97,7 @@ class Cache implements CacheInterface
 
 	public function remove($key)
 	{
-		return $this->getAdapter()->remove($key);
+		return $this->getAdapter()->remove($this->keyspace . $key);
 	}
 
 	/**
