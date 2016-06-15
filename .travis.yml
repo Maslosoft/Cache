@@ -14,9 +14,12 @@ services:
   - memcached
   - redis
 install:
-  - sudo apt-get install php-pear
-  - sudo echo "no" | sudo pecl install apcu-beta
   # Extensions install
+  - sudo apt-get install php-pear
+  - bash install-apcu
+  - phpenv config-add travis/$TRAVIS_PHP_VERSION.ini
+  - phpenv config-add travis/apc.ini
+  # Install deps
   - composer install --dev
   # Get fresh tests
   - rm -rf vendor/maslosoft/cachetest
