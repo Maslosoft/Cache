@@ -9,13 +9,19 @@ matrix:
     - php:
       - nightly
       - hhvm
+services:
+  - memcached
+  - redis
 install:
-  - composer self-update
+  - sudo echo "no" | sudo pecl install apcu-beta
+  # Extensions install
   - composer install --dev
-  - composer update maslosoft/cachetest
+  # Get fresh tests
+  - rm -rf vendor/maslosoft/cachetest
+  - git clone https://github.com/Maslosoft/CacheTest.git vendor/maslosoft/cachetest
+  # Ensure that test script is executable
+  - chmod +x run-travis
 before_script:
-# Extensions install
-  - sudo echo "no" | pecl install apcu-beta
 # Extensions enable
   - printf "extension=apcu.so\n" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - printf "extension=memcached.so\n" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
@@ -23,9 +29,5 @@ before_script:
 # Extensions config
   - printf "apc.enable_cli = 1\n" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - printf "apc.enabled = 1\n" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
-after_script:
-  - wget --no-check-certificate https://scrutinizer-ci.com/ocular.phar
-  - bash -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm" ] && [ "$TRAVIS_PHP_VERSION" != "nightly" ]; then php ocular.phar code-coverage:upload --repository=g/Maslosoft/Cache --revision=`git rev-parse HEAD` --format=php-clover ./tests/_output/coverage.clover; fi;'
 script:
-  - bash -c 'if [ "$TRAVIS_PHP_VERSION" == "hhvm" ] || [ "$TRAVIS_PHP_VERSION" == "nightly" ]; then vendor/bin/codecept run unit; fi;'
-  - bash -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm" ] && [ "$TRAVIS_PHP_VERSION" != "nightly" ]; then vendor/bin/codecept run unit --coverage --html --coverage-html=. --coverage-xml=./coverage.clover; fi;'
+  - bash run-travis
