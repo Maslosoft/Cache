@@ -15,41 +15,68 @@ namespace Maslosoft\Cache\Adapters;
 use Maslosoft\Cache\Interfaces\CacheAdapterInterface;
 
 /**
- * Apc cache adapter
+ * Apc and Apcu cache adapter
  *
  * @author Piotr Maselkowski <pmaselkowski at gmail.com>
  */
 class Apc implements CacheAdapterInterface
 {
 
+	private $apcu = false;
+
+	public function __construct()
+	{
+		$this->apcu = extension_loaded('apcu');
+	}
+
 	public function get($key)
 	{
-		return apc_fetch($key);
+		if ($this->apcu)
+		{
+			return apcu_fetch((string) $key);
+		}
+		return apc_fetch((string) $key);
 	}
 
 	public function has($key)
 	{
-		return apc_exists($key);
+		if ($this->apcu)
+		{
+			return apcu_exists((string) $key);
+		}
+		return apc_exists((string) $key);
 	}
 
 	public function isAvailable()
 	{
-		return extension_loaded('apc') && ini_get('apc.enabled') == 1;
+		return (extension_loaded('apc') || extension_loaded('apcu')) && ini_get('apc.enabled') == 1;
 	}
 
 	public function set($key, $data, $timeout = null)
 	{
-		return apc_store($key, $data, $timeout);
+		if ($this->apcu)
+		{
+			return apcu_store((string) $key, $data, $timeout);
+		}
+		return apc_store((string) $key, $data, $timeout);
 	}
 
 	public function clear()
 	{
+		if ($this->apcu)
+		{
+			return apcu_clear_cache();
+		}
 		return apc_clear_cache();
 	}
 
 	public function remove($key)
 	{
-		return apc_delete($key);
+		if ($this->apcu)
+		{
+			return apcu_delete((string) $key);
+		}
+		return apc_delete((string) $key);
 	}
 
 }
