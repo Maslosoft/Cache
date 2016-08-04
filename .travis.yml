@@ -10,6 +10,8 @@ matrix:
     - php:
       - nightly
       - hhvm
+      - 5.6
+      - 5.5
 services:
   - memcached
   - redis
