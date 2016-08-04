@@ -17,7 +17,6 @@ services:
   - redis
 install:
   # Extensions install
-  - sudo apt-get install php-apcu
   - sudo apt-get install php-pear
   - bash install-apcu
   - phpenv config-add travis/$TRAVIS_PHP_VERSION.ini
