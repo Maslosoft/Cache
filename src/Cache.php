@@ -111,6 +111,14 @@ class Cache implements CacheInterface
 		return $this->getAdapter()->clear();
 	}
 
+	/**
+	 * Alias to clear
+	 */
+	public function flush()
+	{
+		$this->clear();
+	}
+	
 	public function remove($key)
 	{
 		return $this->getAdapter()->remove($this->keyspace . $key);
