@@ -27,6 +27,22 @@ use Maslosoft\EmbeDi\EmbeDi;
 class Cache implements CacheInterface
 {
 
+	const Minute = 60;
+	const Hour = 3600;
+	const Day = 86400;
+	const Week = 604800;
+
+	/**
+	 * Assumed 30 days
+	 */
+	const Month = 18144000;
+
+	/**
+	 * Assumed 91 days
+	 */
+	const Quarter = 7862400;
+	const Year = 31536000;
+
 	/**
 	 * Adapters configuration
 	 * @var mixed[]

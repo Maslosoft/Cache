@@ -7,11 +7,13 @@ php:
   - hhvm
 matrix:
   allow_failures:
-    - php:
-      - nightly
-      - hhvm
-      - 5.6
-      - 5.5
+    - php: nightly
+    - php: hhvm
+    - php: 5.6
+    - php: 5.5
+cache:
+  directories:
+    - vendor
 services:
   - memcached
   - redis
@@ -22,7 +24,7 @@ install:
   - phpenv config-add travis/$TRAVIS_PHP_VERSION.ini
   - phpenv config-add travis/apc.ini
   # Install deps
-  - composer install --dev
+  - composer install --dev --no-interaction --prefer-dist
   # Get fresh tests
   - rm -rf vendor/maslosoft/cachetest
   - git clone https://github.com/Maslosoft/CacheTest.git vendor/maslosoft/cachetest
