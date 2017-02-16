@@ -13,10 +13,11 @@
 namespace Maslosoft\Cache;
 
 use Maslosoft\Cache\Adapters\Apc;
+use Maslosoft\Cache\Adapters\Memcached;
 use Maslosoft\Cache\Adapters\StaticVar;
 use Maslosoft\Cache\Helpers\AdapterFactory;
-use Maslosoft\Cache\Interfaces\CacheInterface;
 use Maslosoft\Cache\Interfaces\CacheAdapterInterface;
+use Maslosoft\Cache\Interfaces\CacheInterface;
 use Maslosoft\EmbeDi\EmbeDi;
 
 /**
