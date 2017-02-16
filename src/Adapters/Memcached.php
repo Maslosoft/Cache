@@ -27,6 +27,10 @@ class Memcached implements CacheAdapterInterface
 
 	public function __construct()
 	{
+		if (!class_exists(Mc::class))
+		{
+			return;
+		}
 		$this->mc = new Mc();
 		foreach ($this->servers as $connectionString)
 		{
