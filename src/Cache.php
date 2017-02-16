@@ -49,6 +49,7 @@ class Cache implements CacheInterface
 	 * @var mixed[]
 	 */
 	public $adapters = [
+		Memcached::class => true,
 		Apc::class => true,
 		StaticVar::class => true,
 	];
