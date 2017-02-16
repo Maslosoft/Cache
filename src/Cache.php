@@ -42,6 +42,7 @@ class Cache implements CacheInterface
 	 */
 	const Quarter = 7862400;
 	const Year = 31536000;
+	const DefaultCacheId = 'cache';
 
 	/**
 	 * Adapters configuration
@@ -76,10 +77,37 @@ class Cache implements CacheInterface
 	 */
 	private $_di = null;
 
+	/**
+	 * Instances of cache
+	 * @var Cache[]
+	 */
+	private static $caches = [];
+
 	public function __construct($instanceId = 'cache')
 	{
 		$this->_di = new EmbeDi($instanceId);
 		$this->_di->configure($this);
+	}
+
+	/**
+	 * Get flyweight instance of Cache component.
+	 * Only one instance will be created for each `$cacheId`.
+	 *
+	 * @new
+	 * @param string $cacheId
+	 * @return Cache
+	 */
+	public static function fly($cacheId = self::DefaultCacheId)
+	{
+		if (empty($cacheId))
+		{
+			$cacheId = self::DefaultCacheId;
+		}
+		if (empty(self::$caches[$cacheId]))
+		{
+			self::$caches[$cacheId] = new static($cacheId);
+		}
+		return self::$caches[$cacheId];
 	}
 
 	public function init()
@@ -118,7 +146,7 @@ class Cache implements CacheInterface
 	{
 		$this->clear();
 	}
-	
+
 	public function remove($key)
 	{
 		return $this->getAdapter()->remove($this->keyspace . $key);
