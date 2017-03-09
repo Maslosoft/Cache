@@ -117,9 +117,32 @@ class Cache implements CacheInterface
 		$this->_di->store($this);
 	}
 
-	public function get($key)
+	/**
+	 * Get cached object.
+	 *
+	 * Optionally if fail, call callback and store it's return value.
+	 * In this case this will also return callback value.
+	 *
+	 * When using with callback optionally `$timeout` can be specified.
+	 *
+	 * @param string $key
+	 * @param callback $callback
+	 * @param int $timeout
+	 * @return mixed
+	 */
+	public function get($key, $callback = null, $timeout = null)
 	{
-		return $this->getAdapter()->get($this->keyspace . $key);
+		$data = $this->getAdapter()->get($this->keyspace . $key);
+		if (null === $callback)
+		{
+			return $data;
+		}
+		if (empty($data))
+		{
+			$data = call_user_func($callback);
+			$this->set($key, $data, $timeout);
+		}
+		return $data;
 	}
 
 	public function has($key)
