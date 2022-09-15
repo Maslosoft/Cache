@@ -1,7 +1,7 @@
 <!--header-->
 <!-- Auto generated do not modify between `header` and `/header` -->
 
-# <a href="https://maslosoft.com/cache/">Maslosoft Cache</a>
+# <a href="https://maslosoft.com/cache/"><img src="https://maslosoft.com/cache/cache.svg" style="height:24px;" alt="Cache Logo"></a> <a href="https://maslosoft.com/cache/">Maslosoft Cache</a>
 <a href="https://maslosoft.com/cache/">_Easy to use, auto configurable, extensible cache provider_</a>
 
 <a href="https://packagist.org/packages/maslosoft/cache" title="Latest Stable Version">
