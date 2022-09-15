@@ -10,13 +10,26 @@
 <a href="https://packagist.org/packages/maslosoft/cache" title="License">
 <img src="https://poser.pugx.org/maslosoft/cache/license.svg" alt="License" style="height: 20px;"/>
 </a>
-<img src="https://travis-ci.org/Maslosoft/Cache.svg?branch=master"/>
-<img src="http://hhvm.h4cc.de/badge/maslosoft/cache.svg?style=flat"/>
 
 ### Quick Install
 ```bash
 composer require maslosoft/cache
 ```
+
+### Documentation
+
+<a href="https://maslosoft.com/cache/docs/">Full Cache Documentation</a>
+
+
+
+# Self configuring cache
+
+This cache library provides consistent interface
+for popular cache systems. It uses best cache provider available
+based on configurable list.
+
+Also provides logic-less getting of cache value, with fallback
+to callable.
 
 <!--/header-->
 
