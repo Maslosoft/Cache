@@ -1,10 +1,6 @@
 {
 	"name": "maslosoft/cache",
 	"description": "Easy to use, auto configurable, extensible cache provider",
-	"require-dev": {
-		"maslosoft/hedron": "^1",
-		"maslosoft/cachetest": "dev-master"
-	},
 	"license": [
 		"AGPL",
 		"Commercial"
@@ -17,12 +13,27 @@
 	],
 	"minimum-stability": "stable",
 	"require": {
-		"maslosoft/embedi": "*"
+		"maslosoft/embedi": "^1|^2|^3",
+		"php": ">=7.4"
+	},
+	"require-dev": {
+		"codeception/codeception": "^5",
+		"codeception/module-asserts": "^3",
+		"ext-json": "*"
 	},
 	"autoload": {
 		"psr-4": {
 			"Maslosoft\\Cache\\": "src"
 		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Maslosoft\\CacheTest\\Testers\\": "tests/testers"
+		}
+	},
+	"suggest": {
+		"ext-apcu": "Use APCu as cache",
+		"ext-memcached": "Use Memcached as cache"
 	},
 	"homepage": "https://maslosoft.com/cache/"
 }

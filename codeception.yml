@@ -1,13 +1,14 @@
 actor: Tester
 paths:
-    tests: vendor/maslosoft/cachetest/tests
+    tests: tests
+    output: tests/_output
     log: tests/_output
-    data: vendor/maslosoft/cachetest/tests/_data
-    helpers: vendor/maslosoft/cachetest/tests/_support
+    data: tests/_data
+    helpers: tests/_support
 settings:
-    bootstrap: _bootstrap.php
     colors: true
     memory_limit: 1024M
+bootstrap: _bootstrap.php
 coverage:
     enabled: true
     remote: false
