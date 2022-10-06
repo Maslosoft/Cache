@@ -13,6 +13,9 @@
 namespace Maslosoft\Cache\Adapters;
 
 use Maslosoft\Cache\Interfaces\CacheAdapterInterface;
+use function extension_loaded;
+use function ini_get;
+use const PHP_SAPI;
 
 /**
  * Apc and Apcu cache adapter
@@ -22,10 +25,11 @@ use Maslosoft\Cache\Interfaces\CacheAdapterInterface;
 class Apc implements CacheAdapterInterface
 {
 
-	private $apcu = false;
+	private bool $apcu;
 
 	public function __construct()
 	{
+		// Whether to use APC or APCu
 		$this->apcu = extension_loaded('apcu');
 	}
 
@@ -47,9 +51,16 @@ class Apc implements CacheAdapterInterface
 		return apc_exists((string) $key);
 	}
 
-	public function isAvailable()
+	public function isAvailable(): bool
 	{
-		return (extension_loaded('apc') || extension_loaded('apcu')) && ini_get('apc.enabled') == 1;
+		$isLoaded = (extension_loaded('apc') || extension_loaded('apcu'));
+		$isEnabled = ini_get('apc.enabled') == 1;
+		if(PHP_SAPI === 'cli')
+		{
+			// APCu might be enabled on web but not enabled on CLI
+			$isEnabled = $isEnabled && ini_get('apc.enable_cli') == 1;
+		}
+		return $isLoaded && $isEnabled;
 	}
 
 	public function set($key, $data, $timeout = null)
