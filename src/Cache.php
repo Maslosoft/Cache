@@ -28,28 +28,33 @@ use Maslosoft\EmbeDi\EmbeDi;
 class Cache implements CacheInterface
 {
 
-	const Minute = 60;
-	const Hour = 3600;
-	const Day = 86400;
-	const Week = 604800;
+	public const Minute = 60;
+	public const Hour = 3600;
+	public const Day = 86400;
+	public const Week = 604800;
 
 	/**
 	 * Assumed 30 days
 	 */
-	const Month = 18144000;
+	public const Month = 18144000;
 
 	/**
 	 * Assumed 91 days
 	 */
-	const Quarter = 7862400;
-	const Year = 31536000;
-	const DefaultCacheId = 'cache';
+	public const Quarter = 7862400;
+	public const Year = 31536000;
+	public const DefaultCacheId = 'cache';
+
+	/**
+	 * @var string|null
+	 */
+	private static ?string $version = null;
 
 	/**
 	 * Adapters configuration
-	 * @var mixed[]
+	 * @var array
 	 */
-	public $adapters = [
+	public array $adapters = [
 		Memcached::class => true,
 		Apc::class => true,
 		StaticVar::class => true,
@@ -59,36 +64,36 @@ class Cache implements CacheInterface
 	 * Default cache timeout
 	 * @var int
 	 */
-	public $timeout = 600;
+	public int $timeout = 600;
 
 	/**
 	 * Namespace for cache keys. This is to allow multi-tenant applications.
 	 * @var string
 	 */
-	public $keyspace = '';
+	public string $keyspace = '';
 
 	/**
 	 *
-	 * @var CacheInterface
+	 * @var CacheAdapterInterface|null
 	 */
-	private $_adapter = null;
+	private ?CacheAdapterInterface $adapter = null;
 
 	/**
 	 *
 	 * @var EmbeDi
 	 */
-	private $_di = null;
+	private EmbeDi $di;
 
 	/**
 	 * Instances of cache
 	 * @var Cache[]
 	 */
-	private static $caches = [];
+	private static array $caches = [];
 
 	public function __construct($instanceId = 'cache')
 	{
-		$this->_di = new EmbeDi($instanceId);
-		$this->_di->configure($this);
+		$this->di = new EmbeDi($instanceId);
+		$this->di->configure($this);
 	}
 
 	/**
@@ -99,7 +104,7 @@ class Cache implements CacheInterface
 	 * @param string $cacheId
 	 * @return Cache
 	 */
-	public static function fly($cacheId = self::DefaultCacheId)
+	public static function fly(string $cacheId = self::DefaultCacheId): Cache
 	{
 		if (empty($cacheId))
 		{
@@ -112,9 +117,9 @@ class Cache implements CacheInterface
 		return self::$caches[$cacheId];
 	}
 
-	public function init()
+	public function init(): void
 	{
-		$this->_di->store($this);
+		$this->di->store($this);
 	}
 
 	/**
@@ -181,13 +186,23 @@ class Cache implements CacheInterface
 	 * Get cache adapter
 	 * @return CacheAdapterInterface
 	 */
-	private function getAdapter()
+	private function getAdapter(): CacheAdapterInterface
 	{
-		if (null === $this->_adapter)
+		if (null === $this->adapter)
 		{
-			$this->_adapter = AdapterFactory::create($this->adapters, $this);
+			$this->adapter = AdapterFactory::create($this->adapters, $this);
 		}
-		return $this->_adapter;
+		assert($this->adapter !== null);
+		return $this->adapter;
+	}
+
+	public function getVersion(): string
+	{
+		if(self::$version === null)
+		{
+			self::$version = require __DIR__ . '/version.php';
+		}
+		return self::$version;
 	}
 
 }
